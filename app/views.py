@@ -14,4 +14,12 @@ def equijoin(request):
     d={'EMPOBJECTS':EMPOBJECTS}
     return render(request,'equijoin.html',d)
 
+
+def selfjoin(request):
+    EMPOBJECTS=Emp.objects.select_related('mgr').all()
+    EMPOBJECTS=Emp.objects.select_related('mgr').filter(mgr__ename='king')
+    
+    d={'EMPOBJECTS':EMPOBJECTS}
+    return render(request,'selfjoin.html',d)    
+
   
